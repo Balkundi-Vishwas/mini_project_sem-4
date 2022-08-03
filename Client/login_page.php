@@ -57,16 +57,15 @@
                 $pass2=$row['pass'];
                 if($numberofrows==1 ){
                     if($pass2==$pass1){
-                    ?><script>alert("Verified Successfully");</script><?php
+                    ?><script>alert("customer Verified Successfully");</script><?php
                     }
                     else{
                         ?><script>alert("Please Enter correct password");
-                        
                         window.location='login_page.php';</script><?php
                     }
                 }
                 else{
-                    ?><script>alert("Number Not registered \n Please Register");window.location='register_page.php';</script><?php
+                    ?><script>alert("Number Not registered \n Please Register");window.location='login_page.php';</script><?php
                 }
             }
             ?>

@@ -33,18 +33,47 @@
         <?php
         
         include "../Shared/menu.html";
-        include_once "../Shared/connection.php";
-
+        include_once "../Shared/connection.php"
         ?>
 
         <div class="d-flex justify-content-center align-items-center align-self-center vh-100">
-            <form action="../client/login_page.php" method="post" class="w-25 bg-warning p-4 text-center">
+            <form  method="post" class="w-25 bg-warning p-4 text-center">
                 <h2>Admin Login</h2>
-                <input type="text" name="uname" placeholder="Enter Username" class="mt-3 form-control">
-                <input type="password" name="password" placeholder="Enter Password" class="mt-3 form-control">      
-                <input type="submit" value="Login" class="mt-3 form-control btn btn-success">
+                <input type="text" name="uname" placeholder="Enter Username" class="mt-3 form-control" required>
+                <input type="password" name="pass" placeholder="Enter Password" class="mt-3 form-control" required>      
+                <input type="submit" name="login" value="Login" class="mt-3 form-control btn btn-success">
             </form>
         </div>
 
+        <?php
+        if(ISSET($_POST['login']))
+        {
+            $uname=$_POST['uname'];
+            $pass=$_POST['pass'];
+            $result=$conn->query("select * from admin where uname=$uname") or die($conn->error);
+            $numberofrows=$result->num_rows;
+            $row=$result->fetch_array();
+            $pass2=$row['pass'];
+            if($numberofrows==1)
+            {
+                if($pass2==$pass)
+                {
+                    ?><script>alert("admin Verified Successfully");
+                    window.location='addStadium.html';
+                    </script><?php
+                }
+                else
+                {
+                    ?><script>alert("Please Enter correct password");
+                        window.location='admin_login_page.php';</script><?php
+                }
+            }
+            else
+            {
+                ?><script>alert("user not yet registered \n kindly register");window.location='admin_login_page.php';</script><?php
+
+            }
+        }
+        ?>
     </body>
 </html>
