@@ -3,7 +3,7 @@
 
 include_once "../Shared/connection.php";
 
-if (!isset($_FILES['simage']) && !isset($_POST['sname']) && !isset($_POST['address']) && !isset($_POST['city']))
+if (!isset($_FILES['simage']) || !isset($_POST['sname']) || !isset($_POST['address']) || !isset($_POST['city']))
 {
     echo "<h2>no image has been uploaded, please add an image</h2>";
     echo "<script>history.back</script>";

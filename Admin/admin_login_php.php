@@ -1,6 +1,6 @@
 <?php
 
-if (!isset($_POST['uname']) && !isset($_POST['password']))
+if (!isset($_POST['uname']) || !isset($_POST['password']))
 {
     echo "<script>alert('Username or Password Field Empty!')</script>";
     header("refresh: 0; url = 'admin_login_page.php'");
