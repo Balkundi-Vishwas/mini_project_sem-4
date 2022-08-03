@@ -25,6 +25,7 @@ if ($result)
 else
 {
     echo "<script> alert('An unknown error occured, please try again')</script>";
+    header("refresh: 0; url = 'admin_register_page.html'");
 }
 
 ?>
