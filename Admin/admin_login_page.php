@@ -50,7 +50,7 @@
         {
             $uname=$_POST['uname'];
             $pass=$_POST['pass'];
-            $result=$conn->query("select * from admin where uname=$uname") or die($conn->error);
+            $result=$conn->query("select * from admin where uname='$uname'") or die($conn->error);
             $numberofrows=$result->num_rows;
             $row=$result->fetch_array();
             $pass2=$row['pass'];
