@@ -17,7 +17,7 @@ $name = $_POST['aname'];
 $uname = $_POST['uname'];
 $pass = $_POST['pass'];
 
-$query = "SELECT into admin(aname, uname, pass) values('$name','$uname','$pass');";
+$query = "INSERT into admin(aname, uname, pass) values('$name','$uname','$pass');";
 $result = mysqli_query($conn, $query);
 
 if ($result)
