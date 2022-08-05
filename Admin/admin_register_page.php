@@ -21,10 +21,14 @@ $query = "insert into admin(aname, uname, pass) values('$name','$uname','$pass')
 $result = mysqli_query($conn, $query);
 
 if ($result)
-    header('location:admin_login_page.php');
+{
+    echo "<script>alert('Registered Successfully!')</script>";
+    header("refresh: 0; url = 'admin_login_page.php'");
+}
 else
 {
     echo "<script> alert('An unknown error occured, please try again')</script>";
+    header("refresh: 0; url = 'admin_register_page.html'");
 }
 
 ?>
