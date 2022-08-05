@@ -6,8 +6,12 @@
     <body>
         <?php
 
+        session_start();
+
+        include "session_login.php";
+
         include_once "../Shared/connection.php";
-        $query = "select * from stadium;";
+        $query = "SELECT * from stadium;";
         $sql_obj = mysqli_query($conn, $query);
         $numRows = mysqli_num_rows($sql_obj);
 

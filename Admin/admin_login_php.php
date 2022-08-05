@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 if (!isset($_POST['uname']) || !isset($_POST['password']))
 {
     echo "<script>alert('Username or Password Field Empty!')</script>";
@@ -10,12 +12,17 @@ include_once "../Shared/connection.php";
 $uname = $_POST['uname'];
 $pass = $_POST['password'];
 
-$query = "select * from admin where uname = '$uname' and pass = '$pass';";
+$query = "SELECT * from admin where uname = '$uname' and pass = '$pass';";
 $sql_obj = mysqli_query($conn, $query);
 $isExist = mysqli_num_rows($sql_obj);
 
 if ($isExist)
 {
+    $query = "SELECT aid from admin where uname = '$uname'";
+    $sql_obj = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($sql_obj);
+    $_SESSION['aid'] = $row['aid'];
+    $_SESSION['admin_login'] = true;
     header('location: option_page.html');
 }
 else
