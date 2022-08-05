@@ -29,7 +29,7 @@ $result = mysqli_query($conn, $query);
 if ($result)
 {
     echo "<script>alert('Stadium Added Successfully')</script>";
-    header('refresh: 0; url = "option_page.html"');
+    header('refresh: 0; url = "add_seats.html"');
 }
 else echo "failure";
 
