@@ -9,6 +9,7 @@
         session_start();
 
         include "session_login.php";
+        include "option_page.html";
 
         include_once "../Shared/connection.php";
         $query = "SELECT * from stadium;";
