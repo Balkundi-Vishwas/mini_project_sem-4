@@ -3,13 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2022 at 10:37 PM
+-- Generation Time: Aug 06, 2022 at 09:31 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET time_zone = "+05:30";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -34,7 +34,6 @@ CREATE TABLE `admin` (
   `pass` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
 
 --
 -- Table structure for table `booking`
@@ -50,14 +49,28 @@ CREATE TABLE `booking` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `division`
+--
+
+CREATE TABLE `division` (
+  `sname` varchar(20) NOT NULL,
+  `class` varchar(10) NOT NULL,
+  `num_seat` smallint(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sport_event`
 --
 
 CREATE TABLE `sport_event` (
+  `ename` varchar(15) NOT NULL,
+  `edate` date NOT NULL,
   `sname` varchar(20) NOT NULL,
   `stime` time NOT NULL,
-  `sdate` date NOT NULL,
-  `ename` varchar(15) NOT NULL
+  `eimage` varchar(50) NOT NULL,
+  `e_desc` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -84,7 +97,8 @@ CREATE TABLE `user` (
   `uname` varchar(20) NOT NULL,
   `upass` varchar(20) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `mobile` int(15) NOT NULL
+  `mobile` int(15) NOT NULL,
+  `address` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -106,9 +120,16 @@ ALTER TABLE `booking`
   ADD KEY `uid` (`uid`);
 
 --
+-- Indexes for table `division`
+--
+ALTER TABLE `division`
+  ADD PRIMARY KEY (`sname`,`class`);
+
+--
 -- Indexes for table `sport_event`
 --
 ALTER TABLE `sport_event`
+  ADD PRIMARY KEY (`ename`,`edate`),
   ADD KEY `sname` (`sname`);
 
 --
@@ -148,6 +169,12 @@ ALTER TABLE `user`
 --
 ALTER TABLE `booking`
   ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `division`
+--
+ALTER TABLE `division`
+  ADD CONSTRAINT `division_ibfk_1` FOREIGN KEY (`sname`) REFERENCES `stadium` (`sname`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `sport_event`
