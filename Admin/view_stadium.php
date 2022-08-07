@@ -14,10 +14,10 @@
         include_once "../Shared/connection.php";
         $query = "SELECT * from stadium;";
         $sql_obj = mysqli_query($conn, $query);
-        $numRows = mysqli_num_rows($sql_obj);
+        $count = mysqli_num_rows($sql_obj);
 
         echo "<div>";
-        for ($i = 0; $i < $numRows; $i++)
+        for ($i = 0; $i < $count; $i++)
         {
             $row = mysqli_fetch_assoc($sql_obj);
             $imgname = $row['simage'];
@@ -33,6 +33,8 @@
                     <h3>Stadium Name: $sname</h3>
                     <h5>Address: $address </h5>
                     <h5>City: $city </h5>
+                    <button><a href = 'delete_stadium.php?sname=$sname'>Delete</a></button>
+                    <button><a href = 'edit_stadium_html.php?sname=$sname'>Edit</a></button>
                 </div>
             </div>
             ";
