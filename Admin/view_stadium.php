@@ -33,6 +33,7 @@
                     <h3>Stadium Name: $sname</h3>
                     <h5>Address: $address </h5>
                     <h5>City: $city </h5>
+                    <button><a href='delete_stadium.php?sname=$sname'>click</a></button>
                 </div>
             </div>
             ";

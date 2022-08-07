@@ -21,16 +21,22 @@
         {
             $row = mysqli_fetch_assoc($sql_obj);
             $imgname = $row['eimage'];
-            $sname = $row['ename'];
-            $etime=
+            $ename=$row['ename'];
+            $sname = $row['sname'];
+            $etime=$row['stime'];
+            $sdate=$row['sdate'];
+            $desc=$row['e_desc'];
             echo
             "
             <div>
                 <div>
+                    <h2>event:$ename
                     <img src = '../Images/$imgname' style = 'width: 350px;'></img>
-                    <h3>Stadium Name: $sname</h3>
-                    <h5>Address: $address </h5>
-                    <h5>City: $city </h5>
+                    <h3>Stadium Name: $ename</h3>
+                    <h4>event start date:$sdate </h4>
+                    <h4>event time: $etime </h4>
+                    <p>event description:$desc</p>
+                    <button><a href='delete_event.php?ename=$ename'>click</button>
                 </div>
             </div>
             ";
