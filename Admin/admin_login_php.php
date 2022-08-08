@@ -7,6 +7,7 @@ if (!isset($_POST['uname']) || !isset($_POST['password']))
     echo "<script>alert('Username or Password Field Empty!')</script>";
     header("refresh: 0; url = 'admin_login_page.php'");
 }
+
 include_once "../Shared/connection.php";
 
 $uname = $_POST['uname'];

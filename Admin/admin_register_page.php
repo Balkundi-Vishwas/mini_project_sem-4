@@ -17,6 +17,16 @@ $name = $_POST['aname'];
 $uname = $_POST['uname'];
 $pass = $_POST['pass'];
 
+$query = "SELECT * from admin where uname = '$uname';";
+$sql_obj = mysqli_query($conn, $query);
+$isExist = mysqli_num_rows($sql_obj);
+
+if ($isExist)
+{
+    echo "<script>alert('Username already in use by another admin, try a different username!')</script>";
+    header("refresh: 0; url = 'admin_register_page.html'");
+}
+
 $query = "INSERT into admin(aname, uname, pass) values('$name','$uname','$pass');";
 $result = mysqli_query($conn, $query);
 
@@ -25,6 +35,7 @@ if ($result)
 else
 {
     echo "<script> alert('An unknown error occured, please try again')</script>";
+    header("refresh: 0; url = 'admin_register_page.html'");
 }
 
 ?>
