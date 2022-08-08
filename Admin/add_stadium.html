@@ -32,7 +32,8 @@
             <form action="add_stadium.php" method="post" enctype="multipart/form-data" class="w-25 bg-warning p-4 text-center">
                 <h2>Add Stadium</h2>
                 <input type="text" name="sname" placeholder="Enter Stadium Name" class="mt-3 form-control" required>
-                <input type="file" name="simage" placeholder="Upload Image" accept="image/*" class="mt-3 form-control" required>
+                <input type='file' name='simage' id='img' accept='image/*' class='mt-3 form-control' required>
+                <label for='img' style='width: 200px;' class='mt-3 form-control btn btn-primary'>Add Stadium Image</label>
                 
                 <input type="text" name="address" placeholder="Enter Stadium Address" class="mt-3 form-control" required>
                 <input type="text" name="city" placeholder="Enter Stadium City" class="mt-3 form-control" required>
