@@ -1,31 +1,28 @@
+
 <?php
 
-// include "session_login.php";
+session_start();
+
+include "session_login.php";
 include_once "../Shared/connection.php";
+$sname=$_GET['sname'];
+$sql_delpho = mysqli_query($conn, "select * from stadiums where sname = '$sname'");
+$row = mysqli_fetch_assoc($sql_delpho);
+$photo = $row['simage'];
+$img_status = unlink("../Images/$photo"); 
+$sql_status=mysqli_query($conn,"delete from stadium where sname='$sname'");
 
-echo "<script>confirm('Are you sure you want to delete the stadium?')</script>";
-// header("refresh: 4");
+if($sql_status && img_status )
+{
+    echo "<script>alert('stadium deleted')</script>";
+    header('refresh:0;url="view_stadium.php"');
+}
+else
+{
+    echo "Sql query failed";
+}
 
-// if($choice)
-// {
-//     $sname = $_GET['sname'];
-//     $query = "DELETE from stadium where sname = '$sname';";
-//     $result = mysqli_query($conn, $cmd);
 
-//     if ($result)
-//     {
-//         echo "<script>alert('Stadium deleted')</script>";
-//         header("refresh: 0; url = 'option_page.html'");
-//     }
-//     else
-//     {
-//         echo "<script>alert('Unknown error has occured, please try again!')</script>";
-//         header("refresh: 0; url = 'option_page.html'");
-//     }
-// }
-// else
-// {
-//     header("location: option_page.html");
-// }
 
 ?>
+
