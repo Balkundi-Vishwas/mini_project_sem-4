@@ -3,13 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 06, 2022 at 09:31 PM
+-- Generation Time: Aug 09, 2022 at 11:07 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+05:30";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -34,6 +34,7 @@ CREATE TABLE `admin` (
   `pass` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `booking`
@@ -53,9 +54,10 @@ CREATE TABLE `booking` (
 --
 
 CREATE TABLE `division` (
-  `sname` varchar(20) NOT NULL,
-  `class` varchar(10) NOT NULL,
-  `num_seat` smallint(6) NOT NULL
+  `sname` varchar(25) NOT NULL,
+  `diamond` smallint(6) NOT NULL,
+  `gold` smallint(6) NOT NULL,
+  `silver` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -65,9 +67,9 @@ CREATE TABLE `division` (
 --
 
 CREATE TABLE `sport_event` (
-  `ename` varchar(15) NOT NULL,
+  `ename` varchar(50) NOT NULL,
   `edate` date NOT NULL,
-  `sname` varchar(20) NOT NULL,
+  `sname` varchar(25) NOT NULL,
   `stime` time NOT NULL,
   `eimage` varchar(50) NOT NULL,
   `e_desc` text NOT NULL
@@ -123,7 +125,7 @@ ALTER TABLE `booking`
 -- Indexes for table `division`
 --
 ALTER TABLE `division`
-  ADD PRIMARY KEY (`sname`,`class`);
+  ADD KEY `sname` (`sname`);
 
 --
 -- Indexes for table `sport_event`
