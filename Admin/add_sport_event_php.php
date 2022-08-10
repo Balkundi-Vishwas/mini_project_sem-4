@@ -2,11 +2,11 @@
 
 session_start();
 
-include "session_login.php";
+include "../Shared/session_login.php";
 include_once "../shared/connection.php";
 
 $ename = $_POST['ename'];
-$date = $_POST['edate'];
+$edate = $_POST['edate'];
 $img = $_FILES['eimage'];
 
 $tmp_name = $img['tmp_name'];
@@ -19,18 +19,32 @@ if($error)
 $sname = $_POST['sname'];
 $stime = $_POST['stime'];
 $desc = $_POST['edesc'];
-$jpg_name = $ename.$date.".jpg";
+$jpg_name = $ename.$edate.".jpg";
 
-$query = "INSERT into sport_event(ename, eimage, edate, stime, sname, e_desc) values('$ename', '$jpg_name', str_to_date('$date', '%Y-%m-%d'), '$stime', '$sname', '$desc');";
- move_uploaded_file($tmp_name,"../Images/$jpg_name");
+$query = "SELECT * from sport_event where ename = '$ename' and edate = '$edate';";
+$sql_obj = mysqli_query($conn, $query);
+$isExist = mysqli_num_rows($sql_obj);
+if ($isExist)
+{
+    echo "<script>alert('Event already existing!')</script>" ;
+    header('refresh: 0; url ="add_sport_event.html"');
+    die;
+}
+
+$query = "INSERT into sport_event(ename, eimage, edate, stime, sname, e_desc) values('$ename', '$jpg_name', '$edate', '$stime', '$sname', '$desc');";
 
 $result = mysqli_query($conn, $query);
 
-if ($result)
+if ($result == true)
 {
+    move_uploaded_file($tmp_name,"../Images/$jpg_name");
     echo "<script>alert('Event added!')</script>";
     header('refresh: 0; url = "option_page.html"');
 }
-else echo "failure";
+else
+{
+    echo "<script>alert('could not add event, please try again!')</script>";
+    header('refresh: 0; url = "add_sport_event.php"');
+}
 
 ?>

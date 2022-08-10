@@ -2,18 +2,27 @@
 
 session_start();
 
-        include "session_login.php";
+include "../Shared/session_login.php";
 include_once "../Shared/connection.php";
-$ename=$_GET['ename'];
-$sql_status=mysqli_query($conn,"delete from sport_event where ename='$ename'");
 
-if($sql_status)
+$ename = $_GET['ename'];
+$edate = $_GET['edate'];
+
+$sql_delpho = mysqli_query($conn, "SELECT * from sport_event where ename = '$ename' and edate = '$edate';");
+$row = mysqli_fetch_assoc($sql_delpho);
+$photo = $row['eimage'];
+$sql_status=mysqli_query($conn,"DELETE from sport_event where ename='$ename' and edate = '$edate';");
+
+
+if($sql_status == true)
 {
-    echo "<script>alert('sport event deleted')</script>";
-    header('refresh:0;url="view_sport_event.php"');
+    unlink("../Images/$photo");
+    echo "<script>alert('Event deleted!')</script>";
+    header('refresh: 0; url="view_sport_event.php"');
 }
 else
 {
-    echo "Sql query failed";
+    echo "<script>alert('Could not delete event due to unknown error, please try again')</script>";
+    header('refresh: 0; url="view_sport_event.php"');
 }
 ?>
