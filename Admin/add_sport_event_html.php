@@ -6,6 +6,7 @@
       <body>
 
             <form action="add_sport_event_php.php" method="post" enctype="multipart/form-data">
+                  <div>
                   <h1>Add Sport Event</h1>
                   <input type="text" name="ename" placeholder="Add Event Name" required>
                   <input type="file" name="eimage" placeholder="Upload Image" accept="image/*"  required>
@@ -32,7 +33,15 @@
                   <input type="date" name="edate" required>
                   <input type="time" name="stime" required>
                   <textarea name="edesc" placeholder="Add description of event" required></textarea>
+            </div>
+            <div>
+                   seat price:
+                  <input type="number" min="1" placeholder="diamond price" name="dprice">
+                  <input type="number" min="1" placeholder="gold price" name="gprice">
+                  <input type="number" min="1" placeholder="silver price" name="sprice">
+            </div>
                   <input type="submit">
+                  
             </form>
 
       </body>

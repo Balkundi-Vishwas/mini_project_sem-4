@@ -16,8 +16,14 @@
       $old_edate = $_GET['edate'];
 
       $query = "SELECT * from sport_event where ename = '$old_ename' and edate = '$old_edate';";
+      $query1 = "SELECT * from ticket_price where ename = '$old_ename' and edate = '$old_edate';";
       $sql_obj = mysqli_query($conn, $query);
+      $sql_obj1= mysqli_query($conn, $query1);
       $row = mysqli_fetch_assoc($sql_obj);
+      $row1= mysqli_fetch_assoc($sql_obj1);
+      $dprice=$row1['dprice'];
+      $gprice=$row1['gprice'];
+      $sprice=$row1['sprice'];
       
       $stime = $row['stime'];
       $desc = $row['e_desc'];
@@ -25,7 +31,8 @@
 
       echo
       "
-      <form action='edit_sport_event_php.php?ename=$old_ename&edate=$old_edate' method='post' enctype='multipart/form-data'>
+      <form action='edit_sport_event_php.php?old_ename=$old_ename&old_edate=$old_edate' method='post' enctype='multipart/form-data'>
+      <div>
             <h1>Edit sport event </h1>
             <input type='text' name='ename' value='$old_ename' placeholder='add event name' required>
             <img src='../Images/$imgname' style='width: 200px;'></img>
@@ -48,6 +55,13 @@
             <input type='date' value='$old_edate' name='edate' required>
             <input type='time' name='stime' value='$stime' required>
             <textarea name='edesc' required>$desc</textarea>
+            </div>
+            <div>
+                   seat price:
+                  <input type='number' min='1' placeholder='diamond price' value=$dprice name='dprice'>
+                  <input type='number' min='1' placeholder='gold price' value=$gprice name='gprice'>
+                  <input type='number' min='1' placeholder='silver price' value=$sprice name='sprice'>
+            </div>
             <input type='submit'>
 
       </form>
