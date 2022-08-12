@@ -42,25 +42,25 @@
                         <input type='file' name='eimage' placeholder='Upload Image' id='img' accept='image/*' class="mt-3 form-control" required>
                         <label for='img' style='width: 200px;' class='mt-3 form-control btn btn-success'>Add Stadium Image</label>
                         <select name="sname" placeholder="Select the Stadium" class="mt-3 form-control" required>
-                        <option value="" disabled selected>Select the Stadium</option>
-                        <?php
+                            <option value="" disabled selected>Select the Stadium</option>
+                            <?php
 
-                        session_start();
+                            session_start();
 
-                        include "../Shared/session_login.php";
-                        include_once "../Shared/connection.php";
- 
-                        $query = "SELECT sname from stadium;";
-                        $sql_obj = mysqli_query($conn, $query);
-                        $count = mysqli_num_rows($sql_obj);
-                        for ($i = 0; $i < $count; $i++)
-                        {
-                              $rows = mysqli_fetch_assoc($sql_obj);
-                              $sname = $rows['sname'];
-                              echo "<option value = '$sname'> $sname </option>";
-                        }
-      
-                         ?>
+                            include "../Shared/session_login.php";
+                            include_once "../Shared/connection.php";
+    
+                            $query = "SELECT sname from stadium;";
+                            $sql_obj = mysqli_query($conn, $query);
+                            $count = mysqli_num_rows($sql_obj);
+                            for ($i = 0; $i < $count; $i++)
+                            {
+                                $rows = mysqli_fetch_assoc($sql_obj);
+                                $sname = $rows['sname'];
+                                echo "<option value = '$sname'> $sname </option>";
+                            }
+        
+                            ?>
                          </select>
                          
                          <input type="date" id="date" placeholder="Set Event Date" name="edate" class="mt-3 form-control" required>

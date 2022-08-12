@@ -75,7 +75,7 @@
                     <h4 class='text-white'>Event start date : $edate  </h4>
                     <h5 class='text-white'>Time : $stime</h5>
                     <p class='text-white' > Event Description: $desc</p>
-                    <button class='button1' backgrounonClick='return confirm(`Are you sure you want to cancel the event $ename?`)'><a href='delete_event.php?ename=$ename&edate=$edate'>Delete</a></button>
+                    <button class='button1' onClick='return confirm(`Are you sure you want to cancel the event $ename?`)'><a href='delete_event.php?ename=$ename&edate=$edate'>Delete</a></button>
                     <button class='button2'><a href='edit_sport_event_html.php?ename=$ename&edate=$edate'>Edit</a></button>
                 </div>
             </div>
