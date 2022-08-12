@@ -9,7 +9,7 @@
         <style>
             body
             {
-                font-family: 'Nunito' !important;
+                font-family: 'Times New Roman', Times, serif !important;
                 overflow: hidden;
                 background-image: url('../Shared/bgstadium.jpg');
                 background-size: cover;
