@@ -24,21 +24,20 @@ if (isset($_FILES['eimage']) && !empty($_FILES['eimage']['name']))
         die;
     }
     
-    $old_jpg_name = $old_sname.$old_edate.".jpg";
+    $old_jpg_name = $old_ename.$old_edate.".jpg";
     unlink("../Images/$old_jpg_name");
-    $jpg_name = $sname.$edate.".jpg";
+    $jpg_name = $ename.$edate.".jpg";
     move_uploaded_file($tmp_name,"../Images/$jpg_name");
-    $query = "UPDATE sport_event set ename = '$ename', edate = '$edate', eimage = '$jpg_name', stime = '$stime', sname = '$sname', e_desc = '$edesc' where ename = '$old_ename' and edate = '$old_edate';";
-    $result = mysqli_query($conn, $query);
 }
 else
 {
-    $old_jpg_name = $old_sname.$old_edate.".jpg";
-    $jpg_name = $sname.$edate.".jpg";
+    $old_jpg_name = $old_ename.$old_edate.".jpg";
+    $jpg_name = $ename.$edate.".jpg";
     rename("../Images/$old_jpg_name", "../Images/$jpg_name");
-    $query = "UPDATE sport_event set ename = '$ename', edate = '$edate', eimage = '$jpg_name', stime = '$stime', sname = '$sname', e_desc = '$edesc' where ename = '$old_ename' and edate = '$old_edate';";
-    $result = mysqli_query($conn, $query);
+    
 }
+$query = "UPDATE sport_event set ename = '$ename', edate = '$edate', eimage = '$jpg_name', stime = '$stime', sname = '$sname', e_desc = '$edesc' where ename = '$old_ename' and edate = '$old_edate';";
+$result = mysqli_query($conn, $query);
 
 if ($result == true)
 {
