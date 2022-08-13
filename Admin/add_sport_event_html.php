@@ -45,6 +45,7 @@
                             <option value="" disabled selected>Select the Stadium</option>
                             <?php
 
+
                             session_start();
 
                             include "../Shared/session_login.php";
@@ -71,8 +72,6 @@
                          <input type="submit" value="Add Sport Event" class="mt-3 form-control btn btn-success">
                   </div>      
             </form>       
-            
-
           </div>
 
       </body>
