@@ -7,7 +7,7 @@
         <style>
             body
             {
-                font-family: 'Nunito' !important;
+                font-family: 'Times New Roman', Times, serif !important;
                 overflow: hidden;
                 background-image: url('../Shared/bgstadium.jpg');
                 background-size: cover;
@@ -73,7 +73,7 @@
                     <input type='number' placeholder='class gold' name='gold' value='$gold' min='1' step='1' class='mt-3 form-control' required>
                     <input type='number' placeholder='class silver' name='silver' value='$silver' min='1' step='1' class='mt-3 form-control' required>
                 </div>
-                <input type='submit' value='Update Stadium' class='mt-3 form-control btn btn-success'>
+                <input type='submit' value='Update Stadium Details' class='mt-3 form-control btn btn-success'>
             </form>
         </div>
         ";

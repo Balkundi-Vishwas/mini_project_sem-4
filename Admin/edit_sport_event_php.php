@@ -38,6 +38,8 @@ else
     $jpg_name = $ename.$edate.".jpg";
     rename("../Images/$old_jpg_name", "../Images/$jpg_name");
 }
+$query = "UPDATE sport_event set ename = '$ename', edate = '$edate', eimage = '$jpg_name', stime = '$stime', sname = '$sname', e_desc = '$edesc' where ename = '$old_ename' and edate = '$old_edate';";
+$result = mysqli_query($conn, $query);
 
 $query = "UPDATE sport_event set ename = '$ename', edate = '$edate', eimage = '$jpg_name', stime = '$stime', sname = '$sname', e_desc = '$edesc' where ename = '$old_ename' and edate = '$old_edate';";
 $result = mysqli_query($conn, $query);
