@@ -35,7 +35,7 @@
             ?>
 
         <div class="d-flex justify-content-center align-items-center vh-100">
-            <form  method="post" class="w-25 bg-warning p-4 text-center">
+            <form action="register_page_php.php" method="post" class="w-25 bg-warning p-4 text-center">
                 <h2>Register</h2>
                 <input type="text" name="name" placeholder="Enter Name" class="mt-3 form-control">
                 <input type="text" name="mobile" placeholder="Enter Mobile" maxlength="10" class="mt-3 form-control" required>
