@@ -32,7 +32,7 @@
 
         session_start();
 
-        include "../Shared/session_login.php";
+        include "admin_session_login.php";
         include_once "../Shared/connection.php";
 
         $old_sname = $_GET['sname'];

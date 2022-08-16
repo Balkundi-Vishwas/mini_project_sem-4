@@ -32,15 +32,21 @@
 
         session_start();
 
-        include "../Shared/session_login.php";
+        include "admin_session_login.php";
         include_once "../Shared/connection.php";
 
         $old_ename = $_GET['ename'];
         $old_edate = $_GET['edate'];
 
+
         $query = "SELECT * from sport_event where ename = '$old_ename' and edate = '$old_edate';";
         $sql_obj = mysqli_query($conn, $query);
         $row = mysqli_fetch_assoc($sql_obj);
+        $sql_obj1= mysqli_query($conn, $query1);
+        $row1= mysqli_fetch_assoc($sql_obj1);
+        $dprice=$row1['dprice'];
+        $gprice=$row1['gprice'];
+        $sprice=$row1['sprice'];
         
         $sname = $row['sname'];
         $stime = $row['stime'];
@@ -75,10 +81,16 @@
                         <input type='date' value='$old_edate' name='edate' class='mt-3 form-control' required>
                         <input type='time' name='stime' value='$stime' class='mt-3 form-control' required>
                         <textarea name='edesc' class='mt-3 form-control' required>$desc</textarea>
+                 </div>
+                <div>
+                        seat price:
+                        <input type='number' min='1' placeholder='diamond price' value=$dprice name='dprice'>
+                        <input type='number' min='1' placeholder='gold price' value=$gprice name='gprice'>
+                        <input type='number' min='1' placeholder='silver price' value=$sprice name='sprice'>
+                 </div>
                         <input type='submit' value='Update Event Details' class='mt-3 form-control btn btn-success'>
-                    </div>
             
-                </form>
+            </form>
         </div>   
         ";
 

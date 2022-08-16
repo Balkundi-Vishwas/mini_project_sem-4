@@ -2,7 +2,7 @@
 
 session_start();
 
-include "session_login.php";
+include "admin_session_login.php";
 
 session_destroy();
 
