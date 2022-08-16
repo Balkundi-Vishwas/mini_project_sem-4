@@ -19,10 +19,6 @@ $isExist = mysqli_num_rows($sql_obj);
 
 if ($isExist)
 {
-    $query = "SELECT aid from admin where uname = '$uname'";
-    $sql_obj = mysqli_query($conn, $query);
-    $row = mysqli_fetch_assoc($sql_obj);
-    $_SESSION['aid'] = $row['aid'];
     $_SESSION['admin_login'] = true;
     header('location: option_page.html');
 }

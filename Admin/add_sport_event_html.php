@@ -9,7 +9,6 @@
             body
             {
                 font-family: 'Times New Roman', Times, serif !important;
-                overflow: hidden;
                 background-image: url('../Shared/bgstadium.jpg');
                 background-size: cover;
                 background-repeat: repeat;
@@ -48,7 +47,7 @@
 
                             session_start();
 
-                            include "../Shared/session_login.php";
+                            include "admin_session_login.php";
                             include_once "../Shared/connection.php";
     
                             $query = "SELECT sname from stadium;";
@@ -69,8 +68,15 @@
                          <input type="time" id ="time" placeholder="Set Event Time" name="stime" class="mt-3 form-control" required>
                          <label for="time" style='width: 200px;' class='mt-3 form-control btn btn-success'>Set Event Time</label>
                          <textarea name="edesc" placeholder="Add description of event" class="mt-3 form-control" required></textarea>
-                         <input type="submit" value="Add Sport Event" class="mt-3 form-control btn btn-success">
-                  </div>      
+                    </div> 
+                    <div>
+                        <h4>Seat Prices</h4>
+                        <input type="number" name="dprice" placeholder="Diamond Seat Price" class="mt-3 form-control" required>
+                        <input type="number" name="gprice" placeholder="Gold Seat Price" class="mt-3 form-control" required>
+                        <input type="number" name="sprice" placeholder="Silver Seat Price" class="mt-3 form-control" required>
+                    </div>
+                <input type="submit" value="Add Sport Event" class="mt-3 form-control btn btn-success">
+     
             </form>       
           </div>
 
