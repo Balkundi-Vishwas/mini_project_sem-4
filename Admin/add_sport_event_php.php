@@ -2,7 +2,7 @@
 
 session_start();
 
-include "../Shared/session_login.php";
+include "admin_session_login.php";
 include_once "../shared/connection.php";
 
 $ename = $_POST['ename'];
@@ -36,10 +36,33 @@ if ($isExist)
 }
 
 $query = "INSERT into sport_event(ename, eimage, edate, stime, sname, e_desc) values('$ename', '$jpg_name', '$edate', '$stime', '$sname', '$desc');";
-$query2="INSERT into ticket_price(ename,edate,dprice,gprice,sprice)values('$ename','$edate',$dprice,$gprice,$sprice);";
 $result = mysqli_query($conn, $query);
-$result1=mysqli_query($conn, $query2);
-if ($result == true && $result1==true)
+
+$sql_obj = mysqli_query($conn, "SELECT * from sport_event where ename = '$ename' and edate = '$edate';");
+$eid = mysqli_fetch_assoc($sql_obj)['eid'];
+
+$countd = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * from division where sname = '$sname';"))['diamond'];
+for ($i = 1; $i <= $countd; $i++)
+{
+    $query2="INSERT into ticket_price(eid, class, seatnum, price, occupied) values($eid, 'diamond', $i, $dprice, 0);";
+    mysqli_query($conn, $query2);
+}
+
+$countg = mysqli_fetch_assoc(mysqli_query($conn, "SELECT gold from division where sname = '$sname';"))['gold'];
+for ($i = 1; $i <= $countg; $i++)
+{
+    $query3="INSERT into ticket_price(eid, class, seatnum, price, occupied) values($eid, 'gold', $i, $gprice, 0);";
+    mysqli_query($conn, $query3);
+}
+
+$counts = mysqli_fetch_assoc(mysqli_query($conn, "SELECT silver from division where sname = '$sname';"))['silver'];
+for ($i = 1; $i <= $counts; $i++)
+{
+    $query4="INSERT into ticket_price(eid, class, seatnum, price, occupied) values($eid, 'silver', $i, $sprice, 0);";
+    mysqli_query($conn, $query4);
+}
+
+if ($result == true)
 {
     move_uploaded_file($tmp_name,"../Images/$jpg_name");
     echo "<script>alert('Event added!')</script>";

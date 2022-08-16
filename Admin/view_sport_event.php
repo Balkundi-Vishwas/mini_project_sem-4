@@ -48,7 +48,7 @@
 
         session_start();
 
-        include "../Shared/session_login.php";
+        include "admin_session_login.php";
         include "option_page.html";
         include_once "../Shared/connection.php";
 

@@ -2,7 +2,7 @@
 
 session_start();
 
-include "../Shared/session_login.php";
+include "admin_session_login.php";
 include_once "../Shared/connection.php";
 
 $sname = $_POST['sname'];
