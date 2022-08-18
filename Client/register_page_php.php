@@ -37,7 +37,7 @@ else if($pass1 == $pass2)
     ?>
     <script>
         alert("Registered Successfully");
-        window.location='login_page.php';
+        window.location='login_page_html.php';
     </script>
     <?php
 }
