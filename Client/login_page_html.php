@@ -33,7 +33,6 @@
         <?php
         
         include "../Shared/menu.html";
-        include_once "../Shared/connection.php";
 
         ?>
 
