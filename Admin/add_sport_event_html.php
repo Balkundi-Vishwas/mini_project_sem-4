@@ -11,7 +11,7 @@
                 font-family: 'Times New Roman', Times, serif !important;
                 background-image: url('../Shared/bgstadium.jpg');
                 background-size: cover;
-                background-repeat: repeat;
+                
             }
             img
             {
@@ -33,7 +33,7 @@
         </style>
       </head>
       <body>
-          <div class="d-flex justify-content-center align-items-center vh-100">
+          <div class="d-flex justify-content-center align-items-center mt-5 vh-100">
             <form action="add_sport_event_php.php" method="post" enctype="multipart/form-data" class="w-25 bg-warning p-4 text-center">
                   <div>
                         <h1>Add Sport Event</h1>
@@ -74,8 +74,9 @@
                         <input type="number" name="dprice" placeholder="Diamond Seat Price" class="mt-3 form-control" required>
                         <input type="number" name="gprice" placeholder="Gold Seat Price" class="mt-3 form-control" required>
                         <input type="number" name="sprice" placeholder="Silver Seat Price" class="mt-3 form-control" required>
+                        <input type="submit" value="Add Sport Event" class="mt-3 form-control btn btn-success">
                     </div>
-                <input type="submit" value="Add Sport Event" class="mt-3 form-control btn btn-success">
+                
      
             </form>       
           </div>

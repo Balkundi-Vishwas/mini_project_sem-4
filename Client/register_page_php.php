@@ -17,7 +17,7 @@ if($isExist > 0)
     ?>
     <script>
         alert("Number Already Registered\nPlease login");
-        window.location='login_page.php';</script>
+        window.location='login_page_html.php';</script>
     <?php
     die;
 }
