@@ -84,10 +84,18 @@ $bid = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * from booking where uid =
 
 
 echo "<html>
-    <body>
-        <h3>Do you want to print the ticket?</h3>
-        <button><a href='print.php?bid=$bid'>Print Ticket</a></button>
-    </body>
-</html>"
+        <style>
+            body
+            {
+            font-family: 'Times New Roman', Times, serif !important;
+
+
+            }  
+        </style>
+        <body>
+            <h3>Do you want to print the ticket?</h3>
+            <button><a href='print.php?bid=$bid'>Print Ticket</a></button>
+        </body>
+      </html>"
 
 ?>

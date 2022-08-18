@@ -2,12 +2,19 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
+        <style>
+             body
+            {
+                align-items: center;
+                font-family: 'Times New Roman', Times, serif !important;
+                background-image: url('../Shared/stadium2.jpg');
+                background-size: cover;
+            }
+        </style>
     </head>
     <body>
-        <script>
-
-        </script>
+        <script> </script>
+        
         <?php
 
         // Array ( [uname] => Chetan S [mobile] => 8762625727 [address] => dfjgkdlfgj [ename] => RCB vs KKR 
@@ -42,8 +49,9 @@
         $price = $row['price'];
 
         echo "
-        <div>
-            <h1> Stadium Seat Booking VBCD </h1>
+    <div class='d-flex flex-wrap justify-content-center mb-5'>
+        <div class='card mt-5' style='width:500px;' align='center'>
+            <h1> Stadium Seat Booking </h1>
             <div>
                 <h4>Customer Details</h4>
                 $uname <br>
@@ -70,10 +78,14 @@
                     Gold Seats: $gold <br>
                     Silver Seats: $sil <br>
                 </div>
-                $price <br>
+                Total Price:$$price <br>
             </div>
-        </div>";
+        </div>;
+    </div>";
 
         ?>
-    </body>
+        
+        
+        
+  </body>
 </html>

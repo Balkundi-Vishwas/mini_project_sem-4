@@ -66,7 +66,7 @@
                 }
                 else if($pass1==$pass2){
                     $conn->query("INSERT into customer values(' ','$name','$mobile','$pass1','$address')") or die($conn->error);
-                    ?><script>alert("Registred Successfully");window.location='login_page.php';</script><?php
+                    ?><script>alert("Registred Successfully");window.location='login_page_php.php';</script><?php
                 }
                 else{
                     ?><script>alert("Password Not Matched");//window.location='register_page.php';</script><?php

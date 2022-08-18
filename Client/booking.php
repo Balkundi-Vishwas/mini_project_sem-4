@@ -3,6 +3,16 @@
     <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <style>
+            h2{
+                text-align: center;
+
+            }
+            body
+            {
+                font-family: 'Times New Roman', Times, serif !important;
+
+            }
+            
             .change
             {
                 background-color: green;
@@ -38,7 +48,7 @@
 
             ?>
             <h2>Diamond</h2>
-            <div id='div_dia'>
+            <div id='div_dia' class='d-flex flex-wrap justify-content-around mb-5'>
             <?php
 
             for ($i = 1; $i <= $seats_dia; $i++)
@@ -64,7 +74,7 @@
             ?>
             </div>
             <h2>Gold</h2>
-            <div id='div_gold'>
+            <div id='div_gold' class='d-flex flex-wrap justify-content-around mb-5'>
             <?php
 
             for ($i = 1; $i <= $seats_gold; $i++)
@@ -90,7 +100,7 @@
             ?>
             </div>
             <h2>Silver</h2>
-            <div id='div_sil'>
+            <div id='div_sil' class='d-flex flex-wrap justify-content-around mb-5'>
             <?php
 
             for ($i = 1; $i <= $seats_sil; $i++)
@@ -117,10 +127,18 @@
             
             ?>
             </div>
-            <input type="submit" onClick='return confirm(`Seat booking confirm?`)' class="mt-3 btn btn-success">
-            <input type="text" name="dia_seats">
-            <input type="text" name="gold_seats">
-            <input type="text" name="sil_seats">
+            <form class="form-inline">
+                <div class="form-group mb-2">
+                    <input type="submit" onClick='return confirm(`Seat booking confirm?`)' class="btn btn-success mb-2">
+                    <input type="text" name="dia_seats" >
+                    <input type="text" name="gold_seats">
+                    <input type="text" name="sil_seats">
+                    
+
+                </div>
+
+            </form>
+           
         </form>
     </body>
     <script>   
