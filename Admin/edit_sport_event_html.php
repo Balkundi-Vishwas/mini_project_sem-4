@@ -7,7 +7,6 @@
                 body
                 {
                     font-family: 'Times New Roman', Times, serif !important;
-                    overflow: hidden;
                     background-image: url('../Shared/bgstadium.jpg');
                     background-size: cover;
                     background-repeat: repeat;
@@ -42,11 +41,19 @@
         $query = "SELECT * from sport_event where ename = '$old_ename' and edate = '$old_edate';";
         $sql_obj = mysqli_query($conn, $query);
         $row = mysqli_fetch_assoc($sql_obj);
+        $eid = $row['eid'];
+        $query1 = "SELECT * from ticket_price where eid = $eid and class = 'diamond';";
         $sql_obj1= mysqli_query($conn, $query1);
         $row1= mysqli_fetch_assoc($sql_obj1);
-        $dprice=$row1['dprice'];
-        $gprice=$row1['gprice'];
-        $sprice=$row1['sprice'];
+        $dprice=$row1['price'];
+        $query1 = "SELECT * from ticket_price where eid = $eid and class = 'gold';";
+        $sql_obj1= mysqli_query($conn, $query1);
+        $row1= mysqli_fetch_assoc($sql_obj1);
+        $gprice=$row1['price'];
+        $query1 = "SELECT * from ticket_price where eid = $eid and class = 'silver';";
+        $sql_obj1= mysqli_query($conn, $query1);
+        $row1= mysqli_fetch_assoc($sql_obj1);
+        $sprice=$row1['price'];
         
         $sname = $row['sname'];
         $stime = $row['stime'];
@@ -55,8 +62,8 @@
 
         echo
         "
-        <div class='d-flex justify-content-center align-items-center vh-100'>
-            <form action='edit_sport_event_php.php?old_ename=$old_ename&old_edate=$old_edate' method='post' enctype='multipart/form-data' class='w-25 bg-warning p-4 text-center'>
+        <div class='d-flex justify-content-center align-items-center vh-180 mt-5 mb-5'>
+            <form action='edit_sport_event_php.php?old_ename=$old_ename&old_edate=$old_edate&eid=$eid' method='post' enctype='multipart/form-data' class='w-25 bg-warning p-4 text-center'>
                 <div>
                         <h1>Edit sport event </h1>
                         <input type='text' name='ename' value='$old_ename' placeholder='Add Event Name' class='mt-3 form-control' required>
@@ -83,10 +90,10 @@
                         <textarea name='edesc' class='mt-3 form-control' required>$desc</textarea>
                  </div>
                 <div>
-                        seat price:
-                        <input type='number' min='1' placeholder='diamond price' value=$dprice name='dprice'>
-                        <input type='number' min='1' placeholder='gold price' value=$gprice name='gprice'>
-                        <input type='number' min='1' placeholder='silver price' value=$sprice name='sprice'>
+                        <h2>Seat Price</h2>
+                        <input type='number' min='1' placeholder='diamond price' value=$dprice class='mt-3 form-control' name='dprice' required>
+                        <input type='number' min='1' placeholder='gold price' value=$gprice class='mt-3 form-control' name='gprice' required>
+                        <input type='number' min='1' placeholder='silver price' value=$sprice class='mt-3 form-control' name='sprice' required>
                  </div>
                         <input type='submit' value='Update Event Details' class='mt-3 form-control btn btn-success'>
             

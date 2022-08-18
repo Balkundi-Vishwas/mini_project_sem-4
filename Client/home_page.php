@@ -40,7 +40,15 @@
         <?php 
         
         include_once "../Shared/connection.php";
+
         $query = "SELECT * from sport_event;";
+        $eid = mysqli_fetch_assoc(mysqli_query($conn, $query))['eid'];
+        $query1 = "SELECT * from ticket_price where class = 'silver'";
+        $minprice = mysqli_fetch_assoc(mysqli_query($conn, $query1))['price'];
+        $query2 = "SELECT * from ticket_price where occupied = 0;";
+        $seatsleft = mysqli_num_rows(mysqli_query($conn, $query2));
+
+        $query = "SELECT eid, ename, eimage, sname, time_format(stime, '%h:%i %p') as stime, date_format(edate, '%D %b %Y (%a)') as edate, e_desc from sport_event;";
         $sql_obj = mysqli_query($conn, $query);
         $count = mysqli_num_rows($sql_obj);
 
@@ -69,9 +77,9 @@
                 <div class='card-body bg-dark cbody'>
                     <h4 class='card-title text-warning'> $ename </h4>
                     <h5 class='text-white'> $sname </h5>
-                    <h5 class='text-primary'> $stime $edate</h5>
-                    <h5 class='text-danger'> 5000 Rs onwards </h5>
-                    <h6 class='text-success'> Seats Available: </h6>
+                    <h5 class='text-primary'> $stime, $edate</h5>
+                    <h5 class='text-danger'> $minprice Rs onwards </h5>
+                    <h6 class='text-success'> Seats Left: $seatsleft </h6>
                     <button class='button2'><a href='booking.php?eid=$eid'>Book Now!</a></button>
                 </div>
             </div>";

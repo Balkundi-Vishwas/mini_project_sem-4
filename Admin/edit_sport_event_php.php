@@ -7,6 +7,7 @@ include_once "../Shared/connection.php";
 
 $old_ename = $_GET['old_ename'];
 $old_edate = $_GET['old_edate'];
+$eid = $_GET['eid'];
 $ename = $_POST['ename'];
 $sname = $_POST['sname'];
 $edate = $_POST['edate'];
@@ -43,9 +44,14 @@ $result = mysqli_query($conn, $query);
 
 $query = "UPDATE sport_event set ename = '$ename', edate = '$edate', eimage = '$jpg_name', stime = '$stime', sname = '$sname', e_desc = '$edesc' where ename = '$old_ename' and edate = '$old_edate';";
 $result = mysqli_query($conn, $query);
-$query1="UPDATE ticket_price set ename='$ename', edate='$edate',dprice=$dprice,gprice=$gprice,sprice=$sprice where ename = '$old_ename' and edate = '$old_edate'; ";
-$result2=mysqli_query($conn, $query1);
-if ($result == true && $result==true)
+$query1="UPDATE ticket_price set price = $dprice where eid = $eid and class = 'diamond';";
+$result1=mysqli_query($conn, $query1);
+$query2="UPDATE ticket_price set price = $gprice where eid = $eid and class = 'gold';";
+$result2=mysqli_query($conn, $query2);
+$query3="UPDATE ticket_price set price = $sprice where eid = $eid and class = 'silver';";
+$result3=mysqli_query($conn, $query3);
+
+if ($result == true && $result1 == true && $result2 == true && $result3 == true)
 {
     echo "<script>alert('Event updated!')</script>";
     header("refresh: 0; url = 'view_sport_event.php'");

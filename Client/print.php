@@ -10,38 +10,42 @@
                 background-image: url('../Shared/stadium2.jpg');
                 background-size: cover;
             }
+            .bgimg
+            {
+                background-image: url("../Shared/bgticket.webp");
+            }
         </style>
     </head>
     <body>
         <script> </script>
         
         <?php
+        session_start();
 
-        // Array ( [uname] => Chetan S [mobile] => 8762625727 [address] => dfjgkdlfgj [ename] => RCB vs KKR 
-        // [eimage] => RCB vs KKR2022-08-21.jpg [date_format(e.edate, '%D %b %Y %a')] => 21st Aug 2022 Sun 
-        // [time_format(e.stime, '%h:%i %p')] => 09:45 PM [e_desc] => shfdsjkdfhjk [sname] => Chinnaswamy 
-        // [simage] => Chinnaswamy.jpg [city] => Bengaluru [diamond] => [gold] => 1,3,5 [silver] => 1,3,5,4 
-        // [price] => 4800 )
-        
         include_once "../Shared/connection.php";
+        include "session_login.php";
+
         $bid = $_GET['bid'];
 
-        $query = "SELECT u.uname, u.mobile, u.address, e.ename, e.eimage, date_format(e.edate, '%D %b %Y, %a') as edate, time_format(e.stime, '%h:%i %p') as stime, e.e_desc, s.sname, s.simage, s.address, s.city, b.diamond, b.gold, b.silver, b.price
-        from user u, booking b, sport_event e, stadium s where bid = $bid and b.uid = u.uid and b.eid = e.eid and e.sname = s.sname;";
+        $query = "SELECT u.uname, u.mobile, u.address as uaddress, e.ename, e.eimage, 
+        date_format(e.edate, '%D %b %Y, %a') as edate, time_format(e.stime, '%h:%i %p') as stime, 
+        s.sname, s.simage, s.address as saddress, s.city, b.diamond, b.gold, b.silver, b.price 
+        from user u, booking b, sport_event e, stadium s where bid = $bid and b.uid = u.uid and b.eid = e.eid 
+        and e.sname = s.sname;";
+
         $sql_obj = mysqli_query($conn, $query);
         $row = mysqli_fetch_assoc($sql_obj);
-        // print_r($row);
 
         $uname = $row['uname'];
         $mobile = $row['mobile'];
-        $address = $row['address'];
+        $uaddress = $row['uaddress'];
         $ename = $row['ename'];
         $eimage = $row['eimage'];
         $edate = $row['edate'];
         $stime = $row['stime'];
-        $edesc = $row['e_desc'];
         $sname = $row['sname'];
         $simage = $row['simage'];
+        $saddress = $row['saddress'];
         $city = $row['city'];
         $dia = $row['diamond'];
         $gold = $row['gold'];
@@ -50,42 +54,39 @@
 
         echo "
     <div class='d-flex flex-wrap justify-content-center mb-5'>
-        <div class='card mt-5' style='width:500px;' align='center'>
-            <h1> Stadium Seat Booking </h1>
+        <div class='card m-5 p-5 bgimg' style='width:500px;' align='center'>
+            <h2><b><u> STADIUM SEAT BOOKING </u></b></h2>
             <div>
-                <h4>Customer Details</h4>
-                $uname <br>
+                <h4><b><u>Customer Details</u></b></h4>
+                <b>$uname </b><br>
                 $mobile <br>
-                $address <br>
+                $uaddress <br>
             </div>
             <div>
-                <h4>Event Details</h4>
-                $ename <br>
-                <img src='../Images/$eimage' width='300px'> <br>
-                $edate, \t $stime <br>
-                $edesc <br>
+                <h4><b><u>Event Details</u></b></h4>
+                <h5><b> $ename </b></h5><br>
+                <img src='../Images/$eimage' width='300px' class='rounded border border-dark'> <br><br>
+                <b> $edate, \t $stime </b><br>
             </div>
             <div>
-                <h4>Location Details</h4>
-                $sname <br>
-                <img src='../Images/$simage' width='200px'> <br>
-                $address <br>
+                <h4><b><u>Location Details</u></b></h4>
+                <h6><b>$sname </b></h6>
+                <img src='../Images/$simage' width='200px' class='rounded border border-dark'><br><br>
+                $saddress <br>
                 $city <br>
             </div>
             <div>
                 <div>
-                    Diamond Seats: $dia <br>
+                    <b>Diamond Seats: $dia <br>
                     Gold Seats: $gold <br>
-                    Silver Seats: $sil <br>
+                    Silver Seats: $sil </b><br>
                 </div>
-                Total Price:$$price <br>
+                <h4><b>Total Price:&#x20B9 $price</b></h4> <br>
             </div>
         </div>;
     </div>";
 
-        ?>
-        
-        
-        
+    ?> 
+
   </body>
 </html>

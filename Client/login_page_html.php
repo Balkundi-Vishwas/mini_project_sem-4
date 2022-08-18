@@ -41,7 +41,6 @@
             <form action="login_page_php.php" method="post" class="w-25 bg-warning p-4 text-center">
                 <h2>Login</h2>
                 <input type="text" maxlength="10" name="mobile" placeholder="Enter Mobile" class="mt-3 form-control" required>
-                <input type="text" id="inc" style="visibility:hidden;"/>
                 <input type="password" name="password" placeholder="Enter Password" class="mt-3 form-control" required>      
                 <input type="submit" name="login" value="Login" class="mt-3 form-control btn btn-success">
                 <h6 class="mt-3"><a href="register_page.php"> Not registered yet? </a></h6>

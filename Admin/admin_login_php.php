@@ -20,7 +20,7 @@ $isExist = mysqli_num_rows($sql_obj);
 if ($isExist)
 {
     $_SESSION['admin_login'] = true;
-    header('location: option_page.html');
+    header('location: view_sport_event.php');
 }
 else
 {

@@ -2,6 +2,7 @@
 
 session_start();
 
+include "session_login.php";
 include_once "../Shared/connection.php";
 
 $uid = $_SESSION['user'];
@@ -88,8 +89,6 @@ echo "<html>
             body
             {
             font-family: 'Times New Roman', Times, serif !important;
-
-
             }  
         </style>
         <body>

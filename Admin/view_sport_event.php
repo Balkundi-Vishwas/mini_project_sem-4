@@ -56,7 +56,7 @@
         $sql_obj = mysqli_query($conn, $query);
         $count = mysqli_num_rows($sql_obj);
 
-        echo "<div class='d-flex flex-wrap justify-content-around mb-5'>";
+        echo "<div class='d-flex flex-wrap justify-content-around mt-5 mb-5'>";
         for ($i = 0; $i < $count; $i++)
         {
             $row = mysqli_fetch_assoc($sql_obj);
