@@ -31,7 +31,7 @@
         </style>
     </head>
     <body>
-        <form action="booking_new_php.php" method="POST" class="text-center" style="background-color: rgba(10,10,10,0.5)">
+        <form action="booking_php.php" method="POST" class="text-center" style="background-color: rgba(10,10,10,0.5)">
 
             <?php
 
