@@ -96,7 +96,7 @@
                         <?php
                         if ($seatsleft != 0)
                         {
-                            ?><button class='button2'><a href='booking_new_html.php?eid=<?php echo $eid ?>'>Book Now!</a></button><?php
+                            ?><button class='button2'><a href='booking_html.php?eid=<?php echo $eid ?>'>Book Now!</a></button><?php
                         }
                         else
                         {
