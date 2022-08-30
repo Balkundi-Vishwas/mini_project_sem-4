@@ -81,7 +81,7 @@
 
                 $query2 = "SELECT price from booking b, seat s where b.eid = $eid and s.seat_id = b.seat_id and s.class = 'silver';";
                 $minprice = mysqli_fetch_assoc(mysqli_query($conn, $query2))['price'];
-                $query3 = "SELECT * from booking where occupied = 0;";
+                $query3 = "SELECT * from booking where occupied = 0 and eid = $eid;";
                 $seatsleft = mysqli_num_rows(mysqli_query($conn, $query3));
 
                 ?>
