@@ -30,6 +30,11 @@ if ($count == 0)
     </script> <?php
     die;
 }
+$bid = reset($arr);
+while ($bid == 0)
+{
+    $bid = next($arr);
+}
 
 $query = "SELECT tid from ticket_info where bid = $bid and uid = $uid;";
 $tid = mysqli_fetch_assoc(mysqli_query($conn, $query))['tid'];
