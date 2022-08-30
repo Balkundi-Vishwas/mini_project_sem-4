@@ -47,7 +47,8 @@
         include "option_page.html";
         include_once "../Shared/connection.php";
 
-        $query = "SELECT * from sport_event;";
+        $query = "SELECT eid, ename, eimg, sname, time_format(etime, '%h:%i %p') as etime,
+        date_format(edate, '%D %b %Y (%a)') as edate, edesc from sport_event;";
         $sql_obj = mysqli_query($conn, $query);
         $count = mysqli_num_rows($sql_obj);
         ?>
@@ -75,7 +76,7 @@
                     <div class='card-body bg-dark cbody'>
                         <h2 class='text-warning'>Event : <?php echo $ename ?></h2>
                         <h3 class='text-white'>Stadium Name : <?php echo $sname ?></h3>
-                        <h4 class='text-primary'>Event start date : <?php echo $edate ?></h4>
+                        <h5 class='text-primary'>Date : <?php echo $edate ?></h5>
                         <h5 class='text-primary'>Time : <?php echo $etime ?></h5>
                         <p class='text-white'> Event Description: <?php echo $desc ?></p>
                         <button class='button1' onClick="return confirm('Are you sure you want to cancel the event <?php echo $ename ?>?')"><a href='delete_event.php?eid=<?php echo $eid ?>'>Delete</a></button>
