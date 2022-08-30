@@ -3,28 +3,24 @@
     <head>
 
         <title>Stadium Seat Booking Login</title>
-        <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
         <style>
+            body::-webkit-scrollbar
+            {
+                display: none;
+            }
             body
             {
-                font-family: 'Nunito' !important;
-                overflow: hidden;
+                font-family: 'Times New Roman', Times, serif !important;
                 background-image: url('../Shared/bgstadium.jpg');
                 background-size: cover;
                 background-repeat: repeat;
+                background-attachment: fixed;
             }
             img
             {
                 pointer-events: none;
-            }
-            .bg
-            {
-                top: -40px;
-                position: absolute;
-                z-index: -1;
-                width: 100%;
             }
         </style>
 

@@ -33,7 +33,7 @@ else if (strlen($mobile) <>10 OR substr($mobile, 0, 1) < 6)
 }
 else if($pass1 == $pass2)
 {
-    $conn->query("INSERT into user(uname, mobile, upass, email, address) values('$name', '$mobile', '$pass1', '$email', '$address');") or die($conn->error);
+    $conn->query("INSERT into user(uname, mobile, pass, email, address) values('$name', '$mobile', '$pass1', '$email', '$address');") or die($conn->error);
     ?>
     <script>
         alert("Registered Successfully");
@@ -46,7 +46,7 @@ else
     ?>
     <script>
         alert("Password Not Matched");
-        window.location='register_page.php';
+        window.location='register_page_html.php';
     </script>
     <?php
     die;
