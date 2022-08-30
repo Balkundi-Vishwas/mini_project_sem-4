@@ -8,7 +8,7 @@ include "session_login.php";
 $tid = $_GET['tid'];
 
 $query = "SELECT u.uname, u.mobile, u.address as uaddress, e.ename, e.eimg, time_format(etime, '%h:%i %p')
-as etime, date_format(edate, '%D %b %Y, %a') as edate, s.sname, s.simg, s.address as saddress, s.city
+as etime, date_format(edate, '%D %b %Y, %a') as edate, s.sname, s.simg, s.address as saddress, s.city, b.bid, u.uid
 from user u, sport_event e, stadium s, ticket_info t, seat d, booking b
 where t.tid = $tid and t.bid = b.bid and t.uid = u.uid and b.seat_id = d.seat_id and b.eid = e.eid and
 d.sname = s.sname;";
@@ -27,14 +27,13 @@ $sname = $row['sname'];
 $simage = $row['simg'];
 $saddress = $row['saddress'];
 $city = $row['city'];
+$bid = $row['bid'];
+$uid = $row['uid'];
 
-$query = "SELECT u.uid, e.eid from user u, sport_event e, stadium s, ticket_info t, seat d, booking b
-where t.tid = 6 and t.bid = b.bid and t.uid = u.uid and b.seat_id = d.seat_id and b.eid = e.eid and
-d.sname = s.sname;";
+$query = "SELECT e.eid from booking b, sport_event e where b.bid = $bid and b.eid = e.eid;";
 
 $sql_obj = mysqli_query($conn, $query);
 $row = mysqli_fetch_assoc($sql_obj);
-$uid = $row['uid'];
 $eid = $row['eid'];
 
 $dia = [];
