@@ -4,18 +4,20 @@ $mobile = $_POST['mobile'];
 $pass1 = $_POST['password'];
 
 include_once "../Shared/connection.php";
-$query = "SELECT * from user where mobile = $mobile;";
-$sql_obj = mysqli_query($conn, $query);
-$isExist = mysqli_num_rows($sql_obj);
+$result = $conn->query("SELECT * from user where mobile=$mobile;") or die($conn->error);
+$isExist = $result->num_rows;
+$row = $result->fetch_array($isExist);
+$pass2 = $row['upass'];
 
 if($isExist == 1)
 {
-    $row = mysqli_fetch_assoc($sql_obj);
-    $pass2 = $row['pass'];
-
     if($pass2 == $pass1)
     {
-        ?><script> alert("User Login Successful!"); </script><?php
+        ?>
+        <script>
+            alert("User Login Successful!");
+        </script>
+        <?php
         session_start();
 
         $_SESSION['user_login'] = true;
@@ -27,10 +29,12 @@ if($isExist == 1)
     }
     else
     {
-        ?><script>
+        ?>
+        <script>
             alert("Password Incorrect, please enter the correct password!");
             window.location='login_page.php';
-        </script><?php
+        </script>
+        <?php
     }
 }
 else
@@ -38,7 +42,7 @@ else
     ?>
     <script>
         alert("Number not registered, please register!");
-        window.location='register_page_html.php';
+        window.location='register_page.php';
     </script>
     <?php
 }

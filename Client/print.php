@@ -1,106 +1,9 @@
-<?php
-
-session_start();
-
-include_once "../Shared/connection.php";
-include "session_login.php";
-
-$tid = $_GET['tid'];
-
-$query = "SELECT u.uname, u.mobile, u.address as uaddress, e.ename, e.eimg, time_format(etime, '%h:%i %p')
-as etime, date_format(edate, '%D %b %Y, %a') as edate, s.sname, s.simg, s.address as saddress, s.city
-from user u, sport_event e, stadium s, ticket_info t, seat d, booking b
-where t.tid = $tid and t.bid = b.bid and t.uid = u.uid and b.seat_id = d.seat_id and b.eid = e.eid and
-d.sname = s.sname;";
-
-$sql_obj = mysqli_query($conn, $query);
-$row = mysqli_fetch_assoc($sql_obj);
-
-$uname = $row['uname'];
-$mobile = $row['mobile'];
-$uaddress = $row['uaddress'];
-$ename = $row['ename'];
-$eimage = $row['eimg'];
-$edate = $row['edate'];
-$stime = $row['etime'];
-$sname = $row['sname'];
-$simage = $row['simg'];
-$saddress = $row['saddress'];
-$city = $row['city'];
-
-$query = "SELECT u.uid, e.eid from user u, sport_event e, stadium s, ticket_info t, seat d, booking b
-where t.tid = 6 and t.bid = b.bid and t.uid = u.uid and b.seat_id = d.seat_id and b.eid = e.eid and
-d.sname = s.sname;";
-
-$sql_obj = mysqli_query($conn, $query);
-$row = mysqli_fetch_assoc($sql_obj);
-$uid = $row['uid'];
-$eid = $row['eid'];
-
-$dia = [];
-$query = "SELECT d.seat_num from user u, sport_event e, booking b, ticket_info t, seat d where u.uid = $uid
-and e.eid = $eid and d.class = 'diamond' and t.uid = u.uid and t.bid = b.bid and b.eid = e.eid and
-b.seat_id = d.seat_id order by d.seat_num;";
-$sql_obj = mysqli_query($conn, $query);
-$count = mysqli_num_rows($sql_obj);
-
-for ($i = 0; $i < $count; $i++)
-{
-    $row = mysqli_fetch_assoc($sql_obj);
-    $seat = $row['seat_num'];
-    array_push($dia, $seat);
-}
-$dia = implode(", ", $dia);
-
-
-$gold = [];
-$query = "SELECT d.seat_num from user u, sport_event e, booking b, ticket_info t, seat d where u.uid = $uid
-and e.eid = $eid and d.class = 'gold' and t.uid = u.uid and t.bid = b.bid and b.eid = e.eid and
-b.seat_id = d.seat_id order by d.seat_num;";
-$sql_obj = mysqli_query($conn, $query);
-$count = mysqli_num_rows($sql_obj);
-
-for ($i = 0; $i < $count; $i++)
-{
-    $row = mysqli_fetch_assoc($sql_obj);
-    $seat = $row['seat_num'];
-    array_push($gold, $seat);
-}
-$gold = implode(", ", $gold);
-
-$sil = [];
-$query = "SELECT d.seat_num from user u, sport_event e, booking b, ticket_info t, seat d where u.uid = $uid
-and e.eid = $eid and d.class = 'silver' and t.uid = u.uid and t.bid = b.bid and b.eid = e.eid and
-b.seat_id = d.seat_id order by d.seat_num;";
-$sql_obj = mysqli_query($conn, $query);
-$count = mysqli_num_rows($sql_obj);
-
-for ($i = 0; $i < $count; $i++)
-{
-    $row = mysqli_fetch_assoc($sql_obj);
-    $seat = $row['seat_num'];
-    array_push($sil, $seat);
-}
-$sil = implode(", ", $sil);
-
-$query = "SELECT sum(b.price) as price from user u, sport_event e, booking b, ticket_info t, seat d
-where u.uid = $uid and e.eid = $eid and t.uid = u.uid and t.bid = b.bid and b.eid = e.eid and
-b.seat_id = d.seat_id;";
-$sql_obj = mysqli_query($conn, $query);
-$row = mysqli_fetch_assoc($sql_obj);
-$price = $row['price'];
-
-?>
 <!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <style>
-            body::-webkit-scrollbar
-            {
-                display: none;
-            }
-            body
+             body
             {
                 align-items: center;
                 font-family: 'Times New Roman', Times, serif !important;
@@ -114,38 +17,76 @@ $price = $row['price'];
         </style>
     </head>
     <body>
+        <script> </script>
+        
+        <?php
+        session_start();
 
-        <div class='d-flex flex-wrap justify-content-center mb-5'>
-            <div class='card m-5 p-5 bgimg' style='width:500px;' align = 'center'>
-                <h2><b><u> STADIUM SEAT BOOKING </u></b></h2>
-                <div>
-                    <h4><b><u>Customer Details</u></b></h4>
-                    <b> <?php echo $uname ?> </b><br>
-                    <?php echo $mobile ?> <br>
-                    <?php echo $uaddress ?> <br>
-                </div>
-                <div>
-                    <h4><b><u>Event Details</u></b></h4>
-                    <h5><b> <?php echo $ename ?> </b></h5><br>
-                    <img src='../Images/<?php echo $eimage ?>' width='300px' class='rounded border border-dark'> <br><br>
-                    <b> <?php echo $edate ?>, <?php echo $stime ?> </b><br>
-                </div>
-                <div>
-                    <h4><b><u>Location Details</u></b></h4>
-                    <h6><b><?php echo $sname ?> </b></h6>
-                    <img src='../Images/<?php echo $simage ?>' width='200px' class='rounded border border-dark'><br><br>
-                    <?php echo $saddress ?> <br>
-                    <?php echo $city ?> <br>
-                </div>
-                <div>
-                    <div>
-                        <b>Diamond Seats: <?php echo $dia?> <br>
-                        Gold Seats: <?php echo $gold ?> <br>
-                        Silver Seats: <?php echo $sil ?> </b><br>
-                    </div>
-                    <h4><b>Total Price:&#x20B9 <?php echo $price ?> </b></h4> <br>
-                </div>
+        include_once "../Shared/connection.php";
+        include "session_login.php";
+
+        $bid = $_GET['bid'];
+
+        $query = "SELECT u.uname, u.mobile, u.address as uaddress, e.ename, e.eimage, 
+        date_format(e.edate, '%D %b %Y, %a') as edate, time_format(e.stime, '%h:%i %p') as stime, 
+        s.sname, s.simage, s.address as saddress, s.city, b.diamond, b.gold, b.silver, b.price 
+        from user u, booking b, sport_event e, stadium s where bid = $bid and b.uid = u.uid and b.eid = e.eid 
+        and e.sname = s.sname;";
+
+        $sql_obj = mysqli_query($conn, $query);
+        $row = mysqli_fetch_assoc($sql_obj);
+
+        $uname = $row['uname'];
+        $mobile = $row['mobile'];
+        $uaddress = $row['uaddress'];
+        $ename = $row['ename'];
+        $eimage = $row['eimage'];
+        $edate = $row['edate'];
+        $stime = $row['stime'];
+        $sname = $row['sname'];
+        $simage = $row['simage'];
+        $saddress = $row['saddress'];
+        $city = $row['city'];
+        $dia = $row['diamond'];
+        $gold = $row['gold'];
+        $sil = $row['silver'];
+        $price = $row['price'];
+
+        echo "
+    <div class='d-flex flex-wrap justify-content-center mb-5'>
+        <div class='card m-5 p-5 bgimg' style='width:500px;' align='center'>
+            <h2><b><u> STADIUM SEAT BOOKING </u></b></h2>
+            <div>
+                <h4><b><u>Customer Details</u></b></h4>
+                <b>$uname </b><br>
+                $mobile <br>
+                $uaddress <br>
             </div>
-        </div>
+            <div>
+                <h4><b><u>Event Details</u></b></h4>
+                <h5><b> $ename </b></h5><br>
+                <img src='../Images/$eimage' width='300px' class='rounded border border-dark'> <br><br>
+                <b> $edate, \t $stime </b><br>
+            </div>
+            <div>
+                <h4><b><u>Location Details</u></b></h4>
+                <h6><b>$sname </b></h6>
+                <img src='../Images/$simage' width='200px' class='rounded border border-dark'><br><br>
+                $saddress <br>
+                $city <br>
+            </div>
+            <div>
+                <div>
+                    <b>Diamond Seats: $dia <br>
+                    Gold Seats: $gold <br>
+                    Silver Seats: $sil </b><br>
+                </div>
+                <h4><b>Total Price:&#x20B9 $price</b></h4> <br>
+            </div>
+        </div>;
+    </div>";
+
+    ?> 
+
   </body>
 </html>
