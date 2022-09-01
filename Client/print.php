@@ -3,6 +3,7 @@
 session_start();
 
 include_once "../Shared/connection.php";
+include "option_page.html";
 include "session_login.php";
 
 $tid = $_GET['tid'];
@@ -93,26 +94,11 @@ $price = $row['price'];
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-        <style>
-            body::-webkit-scrollbar
-            {
-                display: none;
-            }
-            body
-            {
-                align-items: center;
-                font-family: 'Times New Roman', Times, serif !important;
-                background-image: url('../Shared/stadium2.jpg');
-                background-size: cover;
-            }
-            .bgimg
-            {
-                background-image: url("../Shared/bgticket.webp");
-            }
-        </style>
+
+        <title>View/Print Ticket</title>
+
     </head>
-    <body>
+    <body class="printbody">
 
         <div class='d-flex flex-wrap justify-content-center mb-5'>
             <div class='card m-5 p-5 bgimg' style='width:500px;' align = 'center'>

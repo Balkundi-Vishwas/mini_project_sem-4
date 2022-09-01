@@ -1,43 +1,19 @@
+<?php
+
+include "../Shared/menu.html";
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
 
-        <title>Stadium Seat Admin Login</title>
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-        <style>
-            body
-            {
-                font-family: 'Times New Roman', Times, serif !important;
-                overflow: hidden;
-                background-image: url('../Shared/bgstadium.jpg');
-                background-size: cover;
-                background-repeat: repeat;
-                background-position: 0 -40px;
-                background-attachment: fixed;
-            }
-            img
-            {
-                pointer-events: none;
-            }
-            .bg
-            {
-                top: -40px;
-                position: absolute;
-                z-index: -1;
-                width: 100%;
-            }
-        </style>
+        <title>Stadium Management Admin Login</title>
 
     </head>
     <body> 
-        <?php
 
-        include "../Shared/menu.html";
-
-        ?>
-
-        <div class="d-flex justify-content-center align-items-center align-self-center vh-100">
+        <div class="d-flex justify-content-center align-items-center vh-100">
             <form action="admin_login_page_php.php" method="post" class="w-25 bg-warning p-4 text-center">
                 <h2>Admin Login</h2>
                 <input type="text" name="uname" placeholder="Enter Username" class="mt-3 form-control" required>

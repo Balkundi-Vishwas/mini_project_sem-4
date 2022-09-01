@@ -1,51 +1,23 @@
+<?php
+
+session_start();
+
+include_once "../Shared/connection.php";
+include "admin_session_login.php";
+include "option_page.html";
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <style>
-            body::-webkit-scrollbar
-            {
-                display: none;
-            }
-            body
-            {
-                font-family: 'Times New Roman', Times, serif;
-            }
-            .cbody
-            {
-                width: 500px;
-            }
-            .button1
-            {
-                background-color:red;
-                border:darkred;
-            }
-            .button2
-            {
-                background-color:green;
-                border:green;
 
-            }
-            p
-            {
-                text-size-adjust: 30px;
-            }
-            .cbody
-            {
-                width: 400px;
-            }
-            
-        </style>
+        <title>View, Edit, Delete Events</title>
 
     </head>
     <body> 
     
         <?php
-
-        session_start();
-
-        include "admin_session_login.php";
-        include "option_page.html";
-        include_once "../Shared/connection.php";
 
         $query = "SELECT eid, ename, eimg, sname, time_format(etime, '%h:%i %p') as etime,
         date_format(edate, '%D %b %Y (%a)') as edate, edesc from sport_event;";
@@ -56,7 +28,9 @@
         <?php
         if ($count == 0)
         {
-            echo "<h1> No Sport Events at the moment</h1>";
+            ?><h1> No Sport Events at the moment</h1>
+            <button class = 'btn btn-success'><a href = 'add_sport_event.php'>Add Event</a></button>
+            </div><?php
         }
         else
         {
@@ -72,15 +46,15 @@
                 $desc = $row['edesc'];
                 ?>
                 <div class='card mt-5 cbody border-dark'>
-                    <img class='card-img-top' src = '../Images/<?php echo $imgname ?>' alt='Card image' style='width: 400px; height: 250px;'>    
+                    <img class='card-img-top cbody' src = '../Images/<?php echo $imgname ?>' alt='Card image' style='height: 250px;'>    
                     <div class='card-body bg-dark cbody'>
                         <h2 class='text-warning'>Event : <?php echo $ename ?></h2>
                         <h3 class='text-white'>Stadium Name : <?php echo $sname ?></h3>
                         <h5 class='text-primary'>Date : <?php echo $edate ?></h5>
                         <h5 class='text-primary'>Time : <?php echo $etime ?></h5>
-                        <p class='text-white'> Event Description: <?php echo $desc ?></p>
-                        <button class='button1' onClick="return confirm('Are you sure you want to cancel the event <?php echo $ename ?>?')"><a href='delete_event.php?eid=<?php echo $eid ?>'>Delete</a></button>
-                        <button class='button2'><a href='edit_sport_event_html.php?eid=<?php echo $eid ?>'>Edit</a></button>
+                        <p class='text-white ellipses'> Event Description: <?php echo $desc ?></p>
+                        <button class='button1' onClick="return confirm('Are you sure you want to cancel the event <?php echo $ename ?>?')"><a class="noul" href='delete_event.php?eid=<?php echo $eid ?>'>Delete</a></button>
+                        <button class='button2'><a class="noul" href='edit_sport_event_html.php?eid=<?php echo $eid ?>'>Edit</a></button>
                     </div>
                 </div>
             <?php

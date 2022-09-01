@@ -1,38 +1,17 @@
+<?php
+
+include "../Shared/menu.html";
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
 
-        <style>
-            body
-            {
-                font-family: 'Nunito' !important;
-                overflow: hidden;
-                background-image: url('../Shared/bgstadium.jpg');
-                background-size: cover;
-                background-repeat: repeat;
-            }
-            img
-            {
-                pointer-events: none;
-            }
-            .bg
-            {
-                top: -40px;
-                position: absolute;
-                z-index: -1;
-                width: 100%;
-            }
-        </style>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <title>Stadium Seat Booking Register</title>
 
     </head>
     <body>
-
-            <?php
-
-            include "../Shared/menu.html";
-
-            ?>
 
         <div class="d-flex justify-content-center align-items-center vh-100">
             <form action="register_page_php.php" method="post" class="w-25 bg-warning p-4 text-center">
