@@ -1,44 +1,23 @@
+<?php
+
+session_start();
+
+include_once "../Shared/connection.php";
+include "session_login.php";
+include "option_page.html";
+
+?>
+
 <html>
     <head>
+        
+        <title>Book Tickets</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-        <style>
-            body::-webkit-scrollbar
-            {
-                display: none;
-            }
-            h2
-            {
-                text-align: center;
-            }
-            body
-            {
-                font-family: 'Times New Roman', Times, serif !important;
-                background-image: url('../Shared/bgstadium.jpg');
-                background-size: cover;
-                background-repeat: repeat;
-                background-attachment: fixed;
-            }
-            .change
-            {
-                background-color: green !important;
-                color: white;
-            }
-            .change:hover
-            {
-                background-color: darkgreen !important;
-            }
-        </style>
     </head>
     <body>
         <form action="booking_php.php" method="POST" class="text-center" style="background-color: rgba(10,10,10,0.5)">
 
             <?php
-
-            session_start();
-
-            include "session_login.php";
-            include_once "../Shared/connection.php";
 
             $eid = $_GET['eid'];
 

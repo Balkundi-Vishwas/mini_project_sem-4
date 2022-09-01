@@ -3,6 +3,7 @@
 session_start();
 
 include_once "../Shared/connection.php";
+include "option_page.html";
 include "session_login.php";
 
 $uid = $_SESSION['user'];
@@ -41,14 +42,13 @@ $tid = mysqli_fetch_assoc(mysqli_query($conn, $query))['tid'];
 
 ?>
 <html>
-    <style>
-        body
-        {
-            font-family: 'Times New Roman', Times, serif !important;
-        }  
-    </style>
+    <head>
+        <title>Book Tickets</title>
+    </head>
     <body>
-        <h3>Do you want to print the ticket?</h3>
-        <button><a href='print.php?tid=<?php echo $tid ?>'>Print Ticket</a></button>
+        <div class="text-center m-5">
+            <h3>Do you want to print the ticket?</h3>
+            <button class="btn btn-success"><a class="noul" href='print.php?tid=<?php echo $tid ?>'>Print Ticket</a></button>
+        </div>
     </body>
 </html>

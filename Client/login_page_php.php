@@ -1,9 +1,10 @@
 <?php 
 
+include_once "../Shared/connection.php";
+
 $mobile = $_POST['mobile'];
 $pass1 = $_POST['password'];
 
-include_once "../Shared/connection.php";
 $query = "SELECT * from user where mobile = $mobile;";
 $sql_obj = mysqli_query($conn, $query);
 $isExist = mysqli_num_rows($sql_obj);

@@ -1,48 +1,33 @@
+<?php
+
+session_start();
+
+if (isset($_SESSION['user_login']))
+{
+    if($_SESSION['user_login'] == false)
+    {
+        include "../Shared/menu.html";
+    }  
+    else
+    {
+        include "option_page.html";
+    } 
+}
+else
+{
+    include "../Shared/menu.html";
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
 
         <title>Welcome to Stadium Seat Booking!</title>
-        <style>
-            body::-webkit-scrollbar
-            {
-                display: none;
-            }
-            body
-            {
-                font-family: 'Times New Roman', Times, serif !important;
-                background-image: url('../Shared/bgstadium.jpg');
-                background-size: cover;
-                background-repeat: repeat;
-                background-attachment: fixed;
-            }
-            .cbody
-            {
-                width: 400px;
-            }
-            .button1
-            {
-                background-color: gray;
-                border: gray;
-
-            }
-            .button2
-            {
-                background-color:green;
-                border:green;
-            }
-        </style>
 
     </head>
     <body>
-        
-        <?php
-
-        session_start();
-
-        include "../Shared/menu.html";
-
-        ?>
 
         <h2 class="m-3"><b>Upcoming Matches &darr;</b></h2>
 
@@ -50,7 +35,8 @@
         
         include_once "../Shared/connection.php";
 
-        $query = "SELECT eid, ename, eimg, sname, time_format(etime, '%h:%i %p') as etime, date_format(edate, '%D %b %Y (%a)') as edate, edesc from sport_event;";
+        $query = "SELECT eid, ename, eimg, sname, time_format(etime, '%h:%i %p') as etime,
+        date_format(edate, '%D %b %Y (%a)') as edate, edesc from sport_event;";
         $sql_obj = mysqli_query($conn, $query);
         $count = mysqli_num_rows($sql_obj);
         if ($count == 0)
@@ -86,24 +72,26 @@
 
                 ?>
                 <div class='card mt-5 cbody border-dark'>
-                    <img class='card-img-top' src = '../Images/<?php echo $imgname ?>' alt='Card image' style='width: 400px; height: 250px;'>
-                    <div class='card-body bg-dark cbody'>
-                        <h3 class='card-title text-warning text-center'> <?php echo $ename ?> </h3>
-                        <h5 class='text-white'> Happening at: <?php echo $sname ?> </h5>
-                        <h5 class='text-primary'> <?php echo $etime?>, <?php echo $edate ?> </h5>
-                        <h5 class='text-danger'> <?php echo $minprice ?> Rs onwards </h5>
-                        <h6 class='text-success'> Seats Left: <?php echo $seatsleft ?> </h6>
-                        <?php
-                        if ($seatsleft != 0)
-                        {
-                            ?><button class='button2'><a href='booking_html.php?eid=<?php echo $eid ?>'>Book Now!</a></button><?php
-                        }
-                        else
-                        {
-                            ?><button class='button1'>Full House!</button><?php
-                        }
-                        ?>
-                    </div>
+                    <a href="event_details.php?eid=<?php echo $eid ?>" class="noul">
+                        <img class='card-img-top cbody' src = '../Images/<?php echo $imgname ?>' alt='Card image' style='height: 250px;'>
+                        <div class='card-body bg-dark cbody'>
+                            <h3 class='card-title text-warning text-center'> <?php echo $ename ?> </h3>
+                            <h5 class='text-white'> Happening at: <?php echo $sname ?> </h5>
+                            <h5 class='text-primary'> <?php echo $etime?>, <?php echo $edate ?> </h5>
+                            <h5 class='text-danger'> &#x20B9 <?php echo $minprice ?> onwards </h5>
+                            <h6 class='text-success'> Seats Left: <?php echo $seatsleft ?> </h6>
+                            <?php
+                            if ($seatsleft != 0)
+                            {
+                                ?><button class='button2'><a class="noul" href='booking_html.php?eid=<?php echo $eid ?>'>Book Now!</a></button><?php
+                            }
+                            else
+                            {
+                                ?><button class='button3'>Full House!</button><?php
+                            }
+                            ?>
+                        </div>
+                    </a>
                 </div>
                 <?php
             }
