@@ -40,15 +40,6 @@ while ($bid == 0)
 $query = "SELECT tid from ticket_info where bid = $bid and uid = $uid;";
 $tid = mysqli_fetch_assoc(mysqli_query($conn, $query))['tid'];
 
+header("location: print.php?tid=$tid");
+
 ?>
-<html>
-    <head>
-        <title>Book Tickets</title>
-    </head>
-    <body>
-        <div class="text-center m-5">
-            <h3>Do you want to print the ticket?</h3>
-            <button class="btn btn-success"><a class="noul" href='print.php?tid=<?php echo $tid ?>'>Print Ticket</a></button>
-        </div>
-    </body>
-</html>

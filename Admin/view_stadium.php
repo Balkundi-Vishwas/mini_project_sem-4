@@ -46,7 +46,7 @@ include "option_page.html";
                         <h3 class='text-white'>Stadium Name: <?php echo $sname ?></h3>
                         <h5 class='text-white ellipses'>Address: <?php echo $address ?></h5>
                         <h6 class='text-white'>City: <?php echo $city ?></h6>
-                        <button class='button1' onClick='return confirm(`Are you sure you want to delete stadium <?php echo $sname ?>?`)'><a class="noul" href = 'delete_stadium.php?sname=<?php echo $sname ?>'>Delete</a></button>
+                        <button class='button1' onClick="return confirm('Are you sure you want to delete stadium <?php echo $sname ?>?')"><a class="noul" href = 'delete_stadium.php?sname=<?php echo $sname ?>'>Delete</a></button>
                         <button class='button2'><a class="noul" href = 'edit_stadium_html.php?sname=<?php echo $sname ?>'>Edit</a></button>
                     </div>
                 </div>

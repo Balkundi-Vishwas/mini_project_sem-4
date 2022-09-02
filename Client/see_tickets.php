@@ -54,6 +54,13 @@ include_once "../Shared/connection.php";
                 }
 
                 $eid = reset($events);
+                if (count($events) == 0)
+                {
+                    ?><td colspan=9>
+                        You haven't booked any tickets. Book now?<br>
+                        <a href="home_page.php"><button class="btn btn-info text-dark"> Book an Event </button></a>
+                    </td><?php
+                }
                 for ($i = 1; $i <= count($events); $i++)
                 {
                     $query = "SELECT t.tid, e.ename, date_format(e.edate, '%D %b %Y') as edate,
@@ -82,7 +89,7 @@ include_once "../Shared/connection.php";
                         <td> <?php echo $numseats ?> </td>
                         <td> <?php echo $price ?> </td>
                         <td> <a href="print.php?tid=<?php echo $tid ?>"><button class="btn btn-info text-dark"> Full Details </button></a> </td>
-                        <td> <a href="#" onClick="return confirm('Are you sure you want to cancel the ticket for <?php echo $ename ?>?')"><button class="btn btn-danger text-dark"> Cancel Ticket </button></a> </td>
+                        <td> <a href="cancel_tickets.php?tid=<?php echo $tid ?>" onClick="return confirm('Are you sure you want to cancel the ticket for <?php echo $ename ?>?')"><button class="btn btn-danger text-dark"> Cancel Ticket </button></a> </td>
                     </tr>
                     
                     <?php

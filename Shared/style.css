@@ -108,12 +108,31 @@ img
     background-color: darkgreen !important;
 }
 
-.printbody
+.printb
 {
-    background-image: url('../Shared/stadium2.jpg');
+    background-image: url('../Shared/bgstadium4.jpg');
+    background-attachment: scroll;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .bgimg
 {
     background-image: url("../Shared/bgticket.webp");
+}
+@media print
+{
+    .d-print-visible
+    {
+        visibility: visible !important;
+        
+    }
+    .d-print-none
+    {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+        margin: 0;
+        padding: 0;
+    }
 }

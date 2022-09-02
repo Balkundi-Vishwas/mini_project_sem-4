@@ -98,9 +98,12 @@ $price = $row['price'];
         <title>View/Print Ticket</title>
 
     </head>
-    <body class="printbody">
+    <body class="printb">
 
-        <div class='d-flex flex-wrap justify-content-center mb-5'>
+        <div class="d-flex flex-wrap justify-content-center mt-5 d-print-none">
+            <button class="btn btn-success" onclick="window.print()"><a class="noul">Print Ticket</a></button>
+        </div>
+        <div class='d-flex flex-wrap justify-content-center'>
             <div class='card m-5 p-5 bgimg' style='width:500px;' align = 'center'>
                 <h2><b><u> STADIUM SEAT BOOKING </u></b></h2>
                 <div>
@@ -132,5 +135,6 @@ $price = $row['price'];
                 </div>
             </div>
         </div>
+
   </body>
 </html>
