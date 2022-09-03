@@ -3,12 +3,26 @@
 session_start();
 
 include_once "../Shared/connection.php";
-include "session_login.php";
-include "option_page.html";
+if (isset($_SESSION['user_login']))
+{
+    if($_SESSION['user_login'] == false)
+    {
+        include "../Shared/menu.html";
+    }  
+    else
+    {
+        include "option_page.html";
+    } 
+}
+else
+{
+    include "../Shared/menu.html";
+}
 
 $eid = $_GET['eid'];
 
-$query = "SELECT * from sport_event where eid = $eid;";
+$query = "SELECT *, time_format(etime, '%h:%i %p') as etime,
+date_format(edate, '%D %b %Y (%a)') as edate from sport_event where eid = $eid;";
 $event = mysqli_query($conn, $query);
 $row = mysqli_fetch_assoc($event);
 
@@ -50,23 +64,27 @@ $sseats = mysqli_fetch_assoc(mysqli_query($conn, $query))['s_occ'];
     </head>
     <body>
 
-        <div>
-            <div>
-                <h1>Event: <?php echo $ename ?></h1><br>
-                <img src="../Images/<?php echo $imgname ?>" width="500px"><br>
-                <h3>Time: <?php echo $etime ?></h3><br>
-                <h3>Date: <?php echo $edate ?></h3>
-            </div>
-            <div>
-                <h2>Stadium: <?php echo $sname ?></h2><br>
-                <img src="../Images/<?php echo $simg ?>" width="500px"><br>
-                <h4>City: <?php echo $scity ?></h4><br>
-                <h4>Address: <?php echo $saddr ?></h4>
-            </div>
-            <div>
-                <h2>Diamond Price: <?php echo $dprice ?>, Seats Left: <?php echo $dseats ?></h2><br>
-                <h2>Gold Price: <?php echo $gprice ?>, Seats Left: <?php echo $gseats ?></h2><br>
-                <h2>Silver Price: <?php echo $sprice ?>, Seats Left: <?php echo $sseats ?></h2> 
+        <div class="d-flex flex-wrap justify-content-center">
+            <div class="card m-5 p-5 bgimg" align = "center" width="1000px">
+                <div>
+                    <h1>Event: <?php echo $ename ?></h1><br>
+                    <img src="../Images/<?php echo $imgname ?>" width="50%"><br>
+                    <h3>Time: <?php echo $etime ?></h3><br>
+                    <h3>Date: <?php echo $edate ?></h3>
+                    <h5>Description: <?php echo $desc ?></h5>
+                </div>
+                <div>
+                    <h2>Stadium: <?php echo $sname ?></h2><br>
+                    <img src="../Images/<?php echo $simg ?>" width="50%"><br>
+                    <h4>City: <?php echo $scity ?></h4><br>
+                    <h4>Address: <?php echo $saddr ?></h4>
+                </div>
+                <div>
+                    <h2>Diamond Price: <?php echo $dprice ?>, Seats Left: <?php echo $dseats ?></h2><br>
+                    <h2>Gold Price: <?php echo $gprice ?>, Seats Left: <?php echo $gseats ?></h2><br>
+                    <h2>Silver Price: <?php echo $sprice ?>, Seats Left: <?php echo $sseats ?></h2> 
+                </div>
+                <a href="booking_html.php?eid=<?php echo $eid ?>"><button class="btn btn-success">Book Now!</button></a>
             </div>
         </div>
 

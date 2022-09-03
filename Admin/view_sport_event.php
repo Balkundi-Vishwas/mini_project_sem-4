@@ -28,8 +28,8 @@ include "option_page.html";
         <?php
         if ($count == 0)
         {
-            ?><h1> No Sport Events at the moment</h1>
-            <button class = 'btn btn-success'><a href = 'add_sport_event.php'>Add Event</a></button>
+            ?><div class="text-center"><h1> No Sport Events at the moment</h1>
+            <button class = 'btn btn-success'><a class="noul" href = 'add_sport_event_html.php'>Add Event</a></button>
             </div><?php
         }
         else

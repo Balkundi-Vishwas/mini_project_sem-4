@@ -36,7 +36,7 @@ else
         include_once "../Shared/connection.php";
 
         $query = "SELECT eid, ename, eimg, sname, time_format(etime, '%h:%i %p') as etime,
-        date_format(edate, '%D %b %Y (%a)') as edate, edesc from sport_event;";
+        date_format(edate, '%D %b %Y (%a)') as edate, edesc from sport_event order by etime;";
         $sql_obj = mysqli_query($conn, $query);
         $count = mysqli_num_rows($sql_obj);
         if ($count == 0)

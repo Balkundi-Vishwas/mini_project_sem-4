@@ -22,7 +22,7 @@ include "option_page.html";
                     <h1>Add Sport Event</h1>
                     <input type="text" name="ename" placeholder="Add Event Name" class="mt-3 form-control" required>
                     <input type='file' name='eimage' placeholder='Upload Image' id='img' accept='image/*' class="mt-3 form-control" required>
-                    <label for='img' class='mt-3 form-control btn btn-success forlabel'>Add Stadium Image</label>
+                    <label for='img' class='mt-3 form-control btn btn-success forlabel'>Add Event Image</label>
                     <select name="sname" placeholder="Select the Stadium" class="mt-3 form-control" required>
                         <option value="" disabled selected>Select the Stadium</option>
                         <?php

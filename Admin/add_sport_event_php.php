@@ -29,8 +29,8 @@ $sql_obj = mysqli_query($conn, $query);
 $isExist = mysqli_num_rows($sql_obj);
 if ($isExist)
 {
-    ?><script>alert('An event already exists in the stadium during the time and date mentioned!')</script><?php
-    header('refresh: 0; url ="add_sport_event_html.php"');
+    ?><script>alert("An event already exists in the stadium during the time and date mentioned!")</script><?php
+    header("refresh: 0; url ='add_sport_event_html.php'");
     die;
 }
 
@@ -51,8 +51,8 @@ for ($i = 0; $i < $diamond; $i++)
     $result = mysqli_query($conn, $query);
     if (!$result)
     {
-        ?><script>alert('Could not add sport event due to unknown error, please try again!')</script><?php
-        header('refresh: 0; url = "add_sport_event_html.php"');
+        ?><script>alert("Could not add sport event due to unknown error, please try again!")</script><?php
+        header("refresh: 0; url = 'add_sport_event_html.php'");
         die;
     }
 }
@@ -85,8 +85,8 @@ for ($i = 0; $i < $silver; $i++)
     $result = mysqli_query($conn, $query);
     if (!$result)
     {
-        ?><script>alert('Could not add sport event due to unknown error, please try again!')</script><?php
-        header('refresh: 0; url = "add_sport_event_html.php"');
+        ?><script>alert("Could not add sport event due to unknown error, please try again!")</script><?php
+        header("refresh: 0; url = 'add_sport_event_html.php'");
         die;
     }
 }
@@ -94,13 +94,13 @@ for ($i = 0; $i < $silver; $i++)
 if ($result == true)
 {
     move_uploaded_file($tmp_name,"../Images/$jpg_name");
-    ?><script>alert('Event added!')</script><?php
-    header('refresh: 0; url = "view_sport_event.php"');
+    ?><script>alert("Event added!")</script><?php
+    header("refresh: 0; url = 'view_sport_event.php'");
 }
 else
 {
-    ?><script>alert('could not add event, please try again!')</script><?php
-    header('refresh: 0; url = "add_sport_event.php"');
+    ?><script>alert("could not add event, please try again!")</script><?php
+    header("refresh: 0; url = 'add_sport_event.php'");
 }
 
 ?>

@@ -25,7 +25,7 @@ include "option_page.html";
         ?><div class='d-flex flex-wrap justify-content-around mb-5'><?php
         if ($count == 0)
         {
-            ?><div><h1> No Stadium added</h1>
+            ?><div class="text-center"><h1> No Stadium added</h1>
             <button class = 'btn btn-success'><a href = 'add_stadium_html.php'>Add Stadium</a></button>
             </div><?php
         }
