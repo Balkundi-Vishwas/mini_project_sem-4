@@ -102,12 +102,7 @@ for ($i = 1; $i <= $scount; $i++)
         die;
     }
 }
-
-if ($result == true)
-{
-    echo "<script>alert('Event updated!')</script>";
+    ?><script>alert('Event updated!')</script><?php
     header("refresh: 0; url = 'view_sport_event.php'");
-}
-else echo "failure";
 
 ?>
